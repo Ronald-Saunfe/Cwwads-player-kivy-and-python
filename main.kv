@@ -1,0 +1,371 @@
+#: import Window kivy.core.window.Window
+
+<Toolbar_up>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+
+        RoundedRectangle:
+            source: 'pics\\grad_up.png'
+            size: self.size
+            pos: self.pos
+            radius: dp(8),dp(8),dp(8),dp(8)
+            
+    padding: dp(16),0,dp(16),0
+
+    MDLabel:
+        text: root.title
+        size_hint_y: None
+        font_name: 'fonts\\Montserrat-Light.ttf'
+        height: dp(15)
+        markup: True
+        shorten: True
+        shorten_from: 'right'
+        text_size: root.width, None
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        size: self.texture_size
+        color: 1,1,1,1
+
+    BoxLayout:
+
+    Icon_label_toggle:
+        id: close
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text: u'\uF156'
+        d_text: u'\uF156'
+        color: 1,1,1,1
+        font_size: '20sp'
+        pos_hint: {'center_x':.5, 'center_y':.5}
+
+<Toolbar_down>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+
+        RoundedRectangle:
+            source: 'pics\\grad_down.png'
+            size: self.size
+            pos: self.pos
+            radius: dp(8),dp(8),dp(8),dp(8)
+
+    padding: dp(16),0,dp(16),0
+    spacing: dp(16)
+    Icon_label_toggle:
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text: u'\uF40A'
+        d_text: u'\uF40A'
+        font_size: '20sp'
+        color: 1,1,1,1
+        pos_hint: {'center_x':.5, 'center_y':.5}
+
+    BoxLayout:
+
+    MDLabel:
+        text: root.duration
+        size_hint_y: None
+        font_name: 'fonts\\Montserrat-Light.ttf'
+        height: dp(15)
+        markup: True
+        shorten: True
+        shorten_from: 'right'
+        text_size: root.width, None
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        size: self.texture_size
+        color: 1,1,1,1
+
+    Icon_label_toggle:
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text: u'\uF580'
+        d_text: u'\uF580'
+        color: 1,1,1,1
+        font_size: '20sp'
+        pos_hint: {'center_x':.5, 'center_y':.5}
+
+    Icon_label_toggle:
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text: u'\uF293'
+        d_text: u'\uF293'
+        color: 1,1,1,1
+        font_size: '20sp'
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        
+<CustomScrollView>:
+    
+
+<CvideoPlayer>:
+    canvas.before:
+        Color:
+            rgba: 0,0,0,1
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    Toolbar_up:
+        id: toolb_up
+        title: root.title
+        size_hint_y: None
+        height: dp(60)
+        x: root.x
+        y: root.y+ root.height
+
+    Toolbar_down:
+        id: toolb_down
+        duration: str(root.duration)
+        size_hint_y: None
+        height: dp(60)
+        x: root.x
+        y: root.y- self.height
+
+<CustomDropdown>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+
+        Color:
+            rgba: 0,0,0,.3
+
+        SmoothLine:
+            rectangle: self.x, self.y, self.width, self.height
+            
+    bar_width: 5
+    scroll_type:['bars']
+    bar_color: 1,1,1,1
+    bar_inactive_color:[0,0,0,.2]
+
+    
+<LabelMenu>:
+    font_name: 'fonts\\Montserrat-Medium.ttf'
+    color: 1,1,1,1
+    text_size: root.width, None
+    size: self.texture_size
+    font_size: '12sp'
+    mipmap: True
+    
+
+<Video_Widget>:
+    orientation: 'vertical'
+    size_hint: None, None
+    size: dp(200), dp(200)
+    spacing: dp(8)
+    canvas:
+        Color:
+            rgba: 1,1,1,0
+
+        Line:
+            rounded_rectangle: self.x, self.y, self.width, self.height, dp(4)
+
+    AsyncImage:
+        canvas.after:
+            Color:
+                rgba:1,1,1,1
+
+            Rectangle:
+                source: 'pics\\play.png'
+                size: self.size[0]/4, self.size[1]/4
+                pos: self.pos[0]+self.size[0]/2.9, self.pos[1]+self.size[1]/2.9
+                
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 1, None
+        height: dp(180)
+        source: root.mime
+      
+
+    Label:
+        text: '[size=10]%s[/size]'%(root.name)
+        size_hint_y: None
+        font_name: 'fonts\\Montserrat-Regular.ttf'
+        height: dp(30)
+        markup: True
+        shorten: True
+        shorten_from: 'right'
+        text_size: root.width, None
+        size: self.texture_size
+        color: 1,1,1,1
+
+    Label:
+        text: '[color=#515151][size=8]%s[/size][/color]'%( root.duration)
+        size_hint_y: None
+        font_name: 'fonts\\Montserrat-Regular.ttf'
+        height: dp(30)
+        halign: 'right'
+        markup: True
+        shorten: True
+        text_size: root.width, None
+        size: self.texture_size
+        color: 1,1,1,1
+
+<SearchText>:
+    canvas:
+        Color:
+            rgba: 1,1,1,0
+
+        SmoothLine:
+            rounded_rectangle: self.x, self.y, self.width, self.height, dp(13)
+
+    padding: dp(8),0,0,0          
+    TextInput:
+        foreground_color: 0,0,0,1
+        font_name: 'fonts/Montserrat-Regular.ttf'
+        hint_text_color: 1,1,1,1
+        padding: dp(8),dp(5),0,0
+        cursor_color: 1,1,1,1
+        foreground_color: 1,1,1,1
+        background_color: 1,1,1,0
+        background_normal: ''
+        background_active: ''
+        multiline: False
+        hint_text: 'Search'
+        font_size: '12sp'
+
+    Icon_label_toggle:
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text: u'\uF349'
+        d_text: u'\uF349'
+        color: 1,1,1,1
+        pos_hint: {'center_x':.5, 'center_y':.5}
+
+        
+<CustomBoxLayout>:
+
+<ButtonBack>:
+    spacing: dp(16)
+    size_hint_y: None
+    height: dp(60)
+    padding: 0,0,dp(16),0
+
+    BoxLayout:
+    
+    Icon_label_toggle:
+        id: lbl_back
+        size_hint: None, None
+        size: dp(32), dp(32)
+        n_text:  u'\uF156'
+        d_text:  u'\uF156'
+        font_size: '20sp'
+        color: 1,0,0, .63
+        pos_hint: {'center_x':.5, 'center_y':.5}
+
+    MDLabel:
+        text: root.title
+        size_hint_y: None
+        font_name: 'fonts\\Montserrat-Medium.ttf'
+        height: dp(15)
+        markup: True
+        shorten: True
+        shorten_from: 'right'
+        text_size: root.width, None
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        size: self.texture_size
+        color: 1,1,1,1
+
+<Pipvideo>:
+    canvas.before:
+        Color:
+            rgba: 1,1,1,.3
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            
+    source: root.source
+    size_hint: None, None
+    allow_fullscreen: False
+    
+<Body>:
+    canvas:
+        Color:
+            rgba: .8,.6,0,1
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
+    CustomBoxLayout:
+        size_hint_y: None
+        height: dp(60)
+        padding: dp(16),0,dp(16),0
+        pos_hint:{'center_x':.5, 'top':1}
+        
+        Icon_label_toggle:
+            id: lbl_menu
+            size_hint: None, None
+            size: dp(32), dp(32)
+            n_text: u'\uF35C'
+            d_text: u'\uF35C'
+            color: 1,1,1,1
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            on_release: root.show_menu()
+
+        MDLabel:
+            text: 'Cwwads Player'
+            color: 1,1,1,1
+
+        BoxLayout:
+
+        BoxLayout:
+            pos_hint: { 'center_y':.5}
+            size_hint: None,None
+            size: dp(100), dp(30)
+            padding: dp(8),0,dp(8),0
+            spacing: dp(8)
+            
+            
+            canvas:
+                Color:
+                    rgba: 1,1,1,.3
+
+                SmoothLine:
+                    rounded_rectangle: self.x, self.y, self.width, self.height, dp(4)
+
+            LabelMenu:
+                text: 'Video'
+                state: 'down'
+                group: 'menu'
+                on_press: self.state='down'
+
+            LabelMenu:
+                text: 'Audio'
+                group: 'menu'
+                on_press: self.state='down'
+
+        BoxLayout:
+
+        SearchText:
+            size_hint_y: None
+            size: dp(100), dp(25)
+            pos_hint: {'center_y':.5}
+
+                
+    CustomScrollView:
+        id: csrllv
+        bar_width: dp(8)
+        scroll_type: ['bars']
+        size_hint: None, None
+        size: root.width, root.height - dp(60) 
+        GridLayout:
+            id: grid
+            cols: int(Window.width/dp(250))
+            size_hint_y: None
+            padding: dp(32), dp(16),dp(16),dp(16)
+            spacing: Window.width-(int(Window.width/dp(200))*dp(200))+dp(32)
+            height: self.minimum_height
+
+
+    CvideoPlayer:
+        id: player
+        size_hint: None, None
+            
+            
+            
+            
